@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Create My City</title>
+</head>
+<body>
+<h1>Create My City</h1>
+<p>
+    <a th:href="@{/}">
+        Back to My City list
+    </a>
+</p>
+
+<form th:action="@{/saveMycity}" th:object="${Mycitys}" method="post">
+    <table>
+        <tr>
+            <td>Name City:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Nation Type:</td>
+            <td>
+                <select th:field="${Mycitys.nation}" th:name="nation">
+                    <option th:each="n:${nation}" th:value="${n.id}" th:text="${n.nameNation}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Area City:</td>
+            <td><input type="text" th:field="*{area}"/></td>
+        </tr>
+        <tr>
+            <td>Population City:</td>
+            <td><input type="text" th:field="*{population}"/></td>
+        </tr>
+        <tr>
+            <td>GDP City:</td>
+            <td><input type="text" th:field="*{gdp}"/></td>
+        </tr>
+        <tr>
+            <td>Description City:</td>
+            <td><textarea type="text" th:field="*{description}"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create My City"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

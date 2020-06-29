@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Detail My City</title>
+</head>
+<body>
+<h1>Detail My City</h1>
+<p>
+    <a th:href="@{/}">
+        Back to My City list
+    </a>
+</p>
+
+<form th:object="${showdetailMycity}" method="get">
+    <input type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name City:</td>
+            <td th:text="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Nation Type:</td>
+            <td th:text="*{nation.nameNation}"></td>
+        </tr>
+        <tr>
+            <td>Area City:</td>
+            <td th:text="*{area}"></td>
+        </tr>
+        <tr>
+            <td>Population City:</td>
+            <td th:text="*{population}"></td>
+        </tr>
+        <tr>
+            <td>GDP City:</td>
+            <td th:text="*{gdp}"></td>
+        </tr>
+        <tr>
+            <td>Description City:</td>
+            <td th:text="*{description}"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

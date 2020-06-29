@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/lesson.css">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/lesson_responsive.css">
+    <title>List City</title>
+</head>
+<body>
+
+    <h1>List City</h1>
+
+    <a th:href="@{/creatMycity}">Create new product</a>
+
+
+
+<div class="row" style="margin-bottom: 30px; margin-top: 200px">
+    <div class="col">
+        <div class="course_search">
+            <form class="course_search_form d-flex flex-md-row flex-column align-items-start justify-content-between">
+                <div><input name="keyword" type="text" class="course_input" placeholder="Course"
+                            required="required"></div>
+                <!--<div><input type="text" class="course_input" placeholder="Level" required="required"></div>-->
+                <button class="course_button"><span>search course</span><span class="button_arrow"><i
+                        class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr style="text-align: center">
+            <th scope="col"  >STT</th>
+            <th scope="col" >Name City</th>
+            <th scope="col" >Name Nation</th>
+            <th colspan="2"> Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="city,count : ${listMyCitys}">
+            <tr style="text-align: center">
+                <td th:text="${count.count}"></td>
+                <td><a th:href="@{/showMyCity/__${city.id}__ }" th:text="*{city.name}"></a></td>
+                <td th:text="*{city.nation.nameNation}"></td>
+                <td><a th:href="@{/editMyCity/__${city.id}__ }">Edit</a></td>
+                <td><a th:href="@{/deleteMycity/__${city.id}__ }">Delete</a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col">
+            <div class="courses_paginations">
+                <a th:href="@{'/'(page=${listMyCitys.number - 1}, keyword= ${keyword})}"
+                   th:if="${listMyCitys.hasPrevious()}">previous</a>
+                <span th:text="${listMyCitys.number + 1}"></span>/<span th:text="${listMyCitys.totalPages}"></span>
+                <a th:href="@{'/'(page=${listMyCitys.number + 1}, keyword= ${keyword})}"
+                   th:if="${listMyCitys.hasNext()}">next</a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+</body>
+</html>
